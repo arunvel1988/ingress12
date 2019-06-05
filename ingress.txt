@@ -27,3 +27,9 @@ kubectl expose deployment arun2 --target-port=8000 --type=NodePort
 
 
 
+
+
+kubectl taint nodes --all node-role.kubernetes.io/master-
+
+
+kubectl edit cm coredns -n kube-system

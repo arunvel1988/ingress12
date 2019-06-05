@@ -1,0 +1,29 @@
+minikube addons enable ingress
+
+kubectl get pods -n kube-system
+
+kubectl run arun1 --image=arunvel1988/appv1 --port=8000
+
+kubectl expose deployment arun1 --target-port=8000 --type=NodePort
+
+kubectl get service arun1
+
+minikube service arun1 --url
+
+kubectl apply -f arun-ingress.yaml
+
+kubectl get ingress
+
+
+kubectl run arun2 --image=arunvel1988/appv2 --port=8000
+
+kubectl expose deployment arun2 --target-port=8000 --type=NodePort
+
+
+ - path: /v2/*
+       backend:
+         serviceName: arun2
+         servicePort: 8000
+
+
+

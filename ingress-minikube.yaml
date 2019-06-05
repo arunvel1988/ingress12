@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: example-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+ rules:
+ - host: arun-linet.in
+   http:
+     paths:
+     - path: /*
+       backend:
+         serviceName: arun1
+         servicePort: 8000
+
+     - path: /v2/*
+       backend:
+         serviceName: arun2
+         servicePort: 8000
